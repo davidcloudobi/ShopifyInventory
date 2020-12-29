@@ -77,7 +77,15 @@ namespace Domain.Service
             }
 
 
+            foreach (var value in userRole)
+            {
+                var role = await RoleManager.FindByNameAsync(value);
+                if (role == null)
+                {
+                    throw new KeyNotFoundException("Role not found");
 
+                }
+            }
 
             IdentityResult createdResult = await UserManager.CreateAsync(request, password);
             if (!createdResult.Succeeded)
@@ -88,13 +96,8 @@ namespace Domain.Service
 
             foreach (var value in userRole)
             {
-                var role = await RoleManager.FindByNameAsync(value);
-                if (role == null)
-                {
-                    throw new KeyNotFoundException("Role not found");
-
-                }
-                await UserManager.AddToRoleAsync(request, role.Name);
+               
+                await UserManager.AddToRoleAsync(request, value);
             }
 
            

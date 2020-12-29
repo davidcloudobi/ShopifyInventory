@@ -44,7 +44,7 @@ namespace Domain.Service
 
             var newOutlet = new Outlet() {Name = request.Name, DateAdded = DateTime.Now};
             business.Outlets.Add(newOutlet);
-            await DbContext.Outlets.AddAsync(newOutlet);
+            //await DbContext.Outlets.AddAsync(newOutlet);
           
 
             var applicationUsers = business.ApplicationUsers;

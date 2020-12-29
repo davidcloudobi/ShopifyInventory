@@ -36,10 +36,10 @@ namespace Domain.Service
             var customerResponse = await  DbContext.Customers.Include(x=>x.Businesses).FirstOrDefaultAsync(x => x.Phone == customer.Phone);
           if (customerResponse == null)
           {
-              customer.Businesses.Add(business);
-                await DbContext.Customers.AddAsync(customer);
-               // business.Customers.Add(customer);
-                //DbContext.Update(business);
+              //customer.Businesses.Add(business);
+                //await DbContext.Customers.AddAsync(customer);
+                business.Customers.Add(customer);
+                DbContext.Update(business);
                 await DbContext.SaveChangesAsync();
               return new GlobalResponse() { Message = "Successful", Status = true };
 
@@ -54,8 +54,8 @@ namespace Domain.Service
           }
           business.Customers.Add(customerResponse);
           DbContext.Update(business);
-          customerResponse.Businesses.Add(business);
-          DbContext.Update(customerResponse);
+          //customerResponse.Businesses.Add(business);
+          //DbContext.Update(customerResponse);
 
 
          await DbContext.SaveChangesAsync();
