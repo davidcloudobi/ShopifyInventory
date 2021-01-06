@@ -3,14 +3,16 @@ using System;
 using Data.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201229175924_dbRemodeling")]
+    partial class dbRemodeling
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -252,16 +254,10 @@ namespace Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid>("OutletId")
-                        .HasColumnType("char(36)");
-
                     b.Property<long>("Quantity")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("OutletId")
-                        .IsUnique();
 
                     b.ToTable("Inventories");
                 });
@@ -359,9 +355,6 @@ namespace Data.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(65,30)");
 
-                    b.Property<long>("Quantity")
-                        .HasColumnType("bigint");
-
                     b.HasKey("Id");
 
                     b.HasIndex("BrandId");
@@ -383,6 +376,7 @@ namespace Data.Migrations
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Url")
+                        .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");
@@ -398,10 +392,13 @@ namespace Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
                     b.Property<Guid>("BusinessId")
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid?>("CustomerId")
+                    b.Property<Guid>("CustomerId")
                         .HasColumnType("char(36)");
 
                     b.Property<decimal>("Discount")
@@ -421,6 +418,8 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ApplicationUserId");
+
                     b.HasIndex("BusinessId");
 
                     b.HasIndex("CustomerId");
@@ -437,9 +436,6 @@ namespace Data.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
-
-                    b.Property<decimal>("Discount")
-                        .HasColumnType("decimal(65,30)");
 
                     b.Property<decimal>("PriceSold")
                         .HasColumnType("decimal(65,30)");
@@ -680,17 +676,6 @@ namespace Data.Migrations
                     b.Navigation("Business");
                 });
 
-            modelBuilder.Entity("Data.Model.Inventory", b =>
-                {
-                    b.HasOne("Data.Model.Outlet", "Outlet")
-                        .WithOne("Inventory")
-                        .HasForeignKey("Data.Model.Inventory", "OutletId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Outlet");
-                });
-
             modelBuilder.Entity("Data.Model.InventoryProduct", b =>
                 {
                     b.HasOne("Data.Model.Inventory", "Inventory")
@@ -761,6 +746,10 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Model.Sell", b =>
                 {
+                    b.HasOne("Data.Model.Identity.ApplicationUser", null)
+                        .WithMany("Sells")
+                        .HasForeignKey("ApplicationUserId");
+
                     b.HasOne("Data.Model.Business", "Business")
                         .WithMany("Sells")
                         .HasForeignKey("BusinessId")
@@ -769,7 +758,9 @@ namespace Data.Migrations
 
                     b.HasOne("Data.Model.Customer", "Customer")
                         .WithMany("Sells")
-                        .HasForeignKey("CustomerId");
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Data.Model.Outlet", "Outlet")
                         .WithMany("Sells")
@@ -897,6 +888,11 @@ namespace Data.Migrations
                     b.Navigation("Sells");
                 });
 
+            modelBuilder.Entity("Data.Model.Identity.ApplicationUser", b =>
+                {
+                    b.Navigation("Sells");
+                });
+
             modelBuilder.Entity("Data.Model.Inventory", b =>
                 {
                     b.Navigation("InventoryProducts");
@@ -904,8 +900,6 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Model.Outlet", b =>
                 {
-                    b.Navigation("Inventory");
-
                     b.Navigation("Sells");
                 });
 

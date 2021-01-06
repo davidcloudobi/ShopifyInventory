@@ -12,8 +12,9 @@ namespace Data.Model
         public Product()
         {
             ProductPictures = new HashSet<ProductPicture>();
-            Inventories = new HashSet<Inventory>();
+           // Inventories = new HashSet<Inventory>();
             SellItems = new HashSet<SellItem>();
+            InventoryProducts = new HashSet<InventoryProduct>();
         }
 
         [Required(ErrorMessage = "Product Name must not be empty")]
@@ -21,6 +22,9 @@ namespace Data.Model
         public string Description { get; set; }
         [Required(ErrorMessage = "Product Price must not be empty")]
         public decimal Price { get; set; }
+
+        [Required(ErrorMessage = "Quantity must not be empty")]
+        public long Quantity { get; set; }
         public DateTime? ManufacturedDate { get; set; }
         public DateTime? ExpiryDate { get; set; }
         public Guid CategoryId { get; set; }
@@ -30,7 +34,8 @@ namespace Data.Model
         public Guid BrandId { get; set; }
         public Brand Brand { get; set; }
         public ICollection<ProductPicture> ProductPictures { get; set; }
-        public ICollection<Inventory> Inventories { get; set; }
+       // public ICollection<Inventory> Inventories { get; set; }
         public ICollection<SellItem> SellItems { get; set; }
+        public ICollection<InventoryProduct> InventoryProducts { get; set; }
     }
 }

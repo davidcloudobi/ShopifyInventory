@@ -14,15 +14,18 @@ namespace Data.Model.Configuration
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Quantity).IsRequired();
-            builder.HasOne(x => x.Business)
-                .WithMany(x => x.Inventories)
-                .HasForeignKey(x => x.BusinessId);
-            builder.HasOne(x => x.Outlet)
-                .WithMany(x => x.Inventories)
-                .HasForeignKey(x => x.OutletId);
-            builder.HasOne(x => x.Product)
-                .WithMany(x => x.Inventories)
-                .HasForeignKey(x => x.ProductId);
+            //builder.HasOne(x => x.Business)
+            //    .WithMany(x => x.Inventories)
+            //    .HasForeignKey(x => x.BusinessId);
+            //builder.HasOne(x => x.Outlet)
+            //    .WithMany(x => x.Inventories)
+            //    .HasForeignKey(x => x.OutletId);
+            //builder.HasOne(x => x.Product)
+            //    .WithMany(x => x.Inventories)
+            //    .HasForeignKey(x => x.ProductId);
+            builder.HasMany(x => x.InventoryProducts)
+                .WithOne(x => x.Inventory);
+
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Data.Model.Configuration
         public void Configure(EntityTypeBuilder<ProductPicture> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Url).IsRequired();
+            //builder.Property(x => x.Url).IsRequired();
             builder.HasOne(x => x.Product)
                 .WithMany(x => x.ProductPictures)
                 .HasForeignKey(x => x.ProductId);

@@ -22,6 +22,8 @@ namespace Data.Model
         public DbSet<ProductPicture> ProductPictures { get; set; }
         public DbSet<Sell> Sells { get; set; }
         public DbSet<SellItem> SellItems { get; set; }
+
+        public DbSet<InventoryProduct> InventoryProducts { get; set; }
        // public DbSet<BusinessCustomer> BusinessCustomers { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

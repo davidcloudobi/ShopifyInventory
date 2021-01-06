@@ -79,6 +79,8 @@ namespace InventorySystem.Helper
             services.AddScoped<IOutletService, OutletService>();
             services.AddScoped<IBrandService, BrandService>();
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<ISellService, SellService>();
         }
 
 

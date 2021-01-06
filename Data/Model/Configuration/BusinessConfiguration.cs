@@ -19,7 +19,7 @@ namespace Data.Model.Configuration
             builder.Property(x => x.Phone).IsRequired();
             builder.HasMany(x => x.Outlets).WithOne(x => x.Business);
             builder.HasMany(x => x.ApplicationUsers).WithOne(x => x.Business);
-            builder.HasMany(x => x.Inventories).WithOne(x => x.Business);
+          //  builder.HasMany(x => x.Inventories).WithOne(x => x.Business);
             builder.HasMany(x => x.Products).WithOne(x => x.Business);
             builder.HasMany(x => x.Sells).WithOne(x => x.Business);
             builder.HasOne(x => x.BusinessType)

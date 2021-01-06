@@ -10,7 +10,7 @@ namespace Data.Model.Identity
     {
         public ApplicationUser()
         {
-            Sells = new HashSet<Sell>();
+            //Sells = new HashSet<Sell>();
             Outlets = new HashSet<Outlet>();
         }
 
@@ -19,7 +19,7 @@ namespace Data.Model.Identity
         public string PictureURL { get; set; }
         public Guid BusinessId { get; set; }
         public Business Business { get; set; }
-        public ICollection<Sell> Sells { get; set; }
+       // public ICollection<Sell> Sells { get; set; }
         public ICollection<Outlet> Outlets { get; set; }
         // public string Username { get; set; }
         // Id, Username, Full Name, Email, Picture URL, Password Hash

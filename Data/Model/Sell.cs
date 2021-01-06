@@ -30,7 +30,7 @@ namespace Data.Model
         //public Guid ApplicationUserId { get; set; }
         //public ApplicationUser ApplicationUser { get; set; }
 
-        public Guid CustomerId { get; set; }
+        public Guid? CustomerId { get; set; }
 
         public Customer Customer { get; set; }
         public ICollection<SellItem> SellItems { get; set; }

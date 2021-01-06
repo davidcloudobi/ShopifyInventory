@@ -20,7 +20,7 @@ namespace Domain.Helper
 
             CreateMap<CustomerRequest, Customer>().ReverseMap();
 
-            //CreateMap<CreateRequest, Account>();
+            CreateMap<ProductRequest, Product>().ReverseMap();
 
             //CreateMap<UpdateRequest, Account>()
             //    .ForAllMembers(x => x.Condition(

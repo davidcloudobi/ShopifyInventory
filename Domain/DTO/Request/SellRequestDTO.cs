@@ -18,9 +18,8 @@ namespace Domain.DTO.Request
         public ICollection<SellItemDTO> SellItems { get; set; }
         public string PaymentType { get; set; }
         public Guid CustomerId { get; set; }
-        public Guid BusinessId { get; set; }
         public Guid OutletId { get; set; }
-        public string ApplicationUserId { get; set; }
+       // public string ApplicationUserId { get; set; }
 
 
     }

@@ -52,15 +52,13 @@ namespace Domain.Service
             business.ApplicationUsers.Add(user);
            var userResponse = await UserService.Business_Add(user, request.Password, new List<string>(){"AccountOwner", "Administrator" });
            //business.ApplicationUsers.Add(user);
-           if (userResponse.Status)
-           {
-               var outletResponse = await OutletService.Create(business.Id, new OutletRequest() {Name = "Main Outlet"});
-               DbContext.Update(business);
-               await DbContext.SaveChangesAsync();
-               return userResponse;
-           }
-           throw new AppException("Internal Error");
-           
+           if (!userResponse.Status) throw new AppException("Internal Error");
+           var outletResponse = await OutletService.Create(business.Id, new OutletRequest() {Name = "Main Outlet"});
+           if (!outletResponse.Status) throw new AppException("Internal Error");
+            DbContext.Update(business);
+           await DbContext.SaveChangesAsync();
+           return userResponse;
+
         }
     }
 }

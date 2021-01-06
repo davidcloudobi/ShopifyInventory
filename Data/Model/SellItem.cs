@@ -13,7 +13,7 @@ namespace Data.Model
         public int Quantity { get; set; }
         [Required(ErrorMessage = "Price Sold must not be empty")]
         public decimal PriceSold { get; set; }
-
+        public decimal Discount { get; set; }
         public Guid SellId { get; set; }
         public Sell Sell { get; set; }
         public Guid ProductId { get; set; }

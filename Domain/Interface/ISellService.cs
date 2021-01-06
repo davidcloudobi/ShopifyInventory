@@ -11,6 +11,6 @@ namespace Domain.Interface
 {
     public  interface ISellService
     {
-        Task<GlobalResponse> Add(SellRequestDTO sellRequest);
+        Task<GlobalResponse> Add(Guid businessId , SellRequestDTO sellRequest);
     }
 }

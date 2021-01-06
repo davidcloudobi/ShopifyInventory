@@ -16,8 +16,11 @@ namespace Data.Model.Configuration
             builder.Property(x => x.Name).IsRequired();
             builder.Property(x => x.DateAdded).IsRequired();
             builder.HasOne(x => x.Business).WithMany(x => x.Outlets).HasForeignKey(x => x.BusinessId);
-            builder.HasMany(x => x.Inventories).WithOne(x => x.Outlet);
+          //  builder.HasMany(x => x.Inventories).WithOne(x => x.Outlet);
+           
             builder.HasMany(x => x.Sells).WithOne(x => x.Outlet);
+
+            builder.HasOne(x => x.Inventory).WithOne(x => x.Outlet).HasForeignKey<Inventory>(x=>x.OutletId);
         }
     }
 }

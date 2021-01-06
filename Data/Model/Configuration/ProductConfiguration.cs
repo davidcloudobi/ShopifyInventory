@@ -15,7 +15,7 @@ namespace Data.Model.Configuration
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name).IsRequired();
             builder.Property(x => x.Price).IsRequired();
-            builder.HasMany(x => x.Inventories).WithOne(x => x.Product);
+           // builder.HasMany(x => x.Inventories).WithOne(x => x.Product);
             builder.HasMany(x => x.ProductPictures).WithOne(x => x.Product);
             builder.HasMany(x => x.SellItems).WithOne(x => x.Product);
             builder.HasOne(x => x.Brand)
@@ -27,6 +27,10 @@ namespace Data.Model.Configuration
             builder.HasOne(x => x.Business)
                 .WithMany(x => x.Products)
                 .HasForeignKey(x => x.BusinessId);
+
+            //############################################
+
+            builder.HasMany(x => x.InventoryProducts).WithOne(x => x.Product);
         }
     }
 }

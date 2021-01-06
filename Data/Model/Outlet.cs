@@ -10,7 +10,7 @@ namespace Data.Model
     {
         public Outlet()
         {
-            Inventories = new HashSet<Inventory>();
+          //  Inventories = new HashSet<Inventory>();
             Sells = new HashSet<Sell>();
             ApplicationUsers = new HashSet<ApplicationUser>();
         }
@@ -21,8 +21,11 @@ namespace Data.Model
         public DateTime DateAdded { get; set; }
         public Guid BusinessId { get; set; }
         public Business Business { get; set; }
-        public ICollection<Inventory> Inventories { get; set; }
+      //  public ICollection<Inventory> Inventories { get; set; }
         public ICollection<Sell> Sells { get; set; }
         public ICollection<ApplicationUser> ApplicationUsers { get; set; }
+
+        //#################################################
+        public Inventory Inventory { get; set; }
     }
 }

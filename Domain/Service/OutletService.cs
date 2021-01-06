@@ -42,7 +42,10 @@ namespace Domain.Service
                 throw new ApplicationException("Outlet already exist");
             }
 
-            var newOutlet = new Outlet() {Name = request.Name, DateAdded = DateTime.Now};
+            var newOutlet = new Outlet
+            {
+                Name = request.Name, DateAdded = DateTime.Now, Inventory = new Inventory() {Quantity = 0}
+            };
             business.Outlets.Add(newOutlet);
             //await DbContext.Outlets.AddAsync(newOutlet);
           

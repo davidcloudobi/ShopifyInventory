@@ -13,7 +13,7 @@ namespace Data.Model
             Outlets = new HashSet<Outlet>();
             Products = new HashSet<Product>();
             ApplicationUsers = new HashSet<ApplicationUser>();
-            Inventories = new HashSet<Inventory>();
+           // Inventories = new HashSet<Inventory>();
             Sells = new HashSet<Sell>();
             Customers = new HashSet<Customer>();
             Brands = new HashSet<Brand>();
@@ -41,7 +41,7 @@ namespace Data.Model
         public  ICollection<Outlet> Outlets { get; set; }
         public ICollection<ApplicationUser> ApplicationUsers  { get; set; }
         public ICollection<Product> Products { get; set; }
-        public ICollection<Inventory> Inventories { get; set; }
+        //public ICollection<Inventory> Inventories { get; set; }
         public ICollection<Sell> Sells { get; set; }
         public ICollection<Customer> Customers { get; set; }
 

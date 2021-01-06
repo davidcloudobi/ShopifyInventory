@@ -9,8 +9,8 @@ namespace Data.Model
 {
    public class ProductPicture : ModelBaseClass
     {
-        [Url(ErrorMessage = "Invalid Url")]
-        [Required(ErrorMessage = "Url must not be empty")]
+        //[Url(ErrorMessage = "Invalid Url")]
+        //[Required(ErrorMessage = "Url must not be empty")]
         public string Url { get; set; }
 
         public Guid ProductId { get; set; }
