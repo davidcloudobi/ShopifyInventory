@@ -20,7 +20,7 @@ namespace InventorySystem.Helper
         {
             services.AddCors(c =>
             {
-                c.AddPolicy("CorsPolicy", options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().AllowAnyHeader());
+                c.AddPolicy("CorsPolicy", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             });
         }
 
@@ -37,11 +37,12 @@ namespace InventorySystem.Helper
 
                     options.RequireHttpsMetadata = false;
                     options.SaveToken = true;
-
+                    var issuer = configuration["AppSettings:Issuer"];
+                    var key = configuration["AppSettings:Key"];
                     options.TokenValidationParameters = new TokenValidationParameters()
                     {
-                        ValidIssuer = configuration["Tokens:Issuer"],
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Tokens:Key"])),
+                        ValidIssuer = issuer,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key)),
                         ValidateIssuerSigningKey = true,
                         ValidateAudience = false,
                         ValidateLifetime = true,
@@ -81,6 +82,7 @@ namespace InventorySystem.Helper
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ISellService, SellService>();
+            services.AddScoped<IAuthLogin, AuthLoginService>();
         }
 
 

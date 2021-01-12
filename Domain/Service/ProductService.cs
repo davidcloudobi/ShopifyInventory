@@ -92,5 +92,17 @@ namespace Domain.Service
             return new GlobalResponse() {Message = "Successful", Status = true};
 
         }
+
+        public async Task<IList<Product>> GetProducts(Guid businessId)
+        {
+            var business = await DbContext.Businesses.Include(x=>x.Products).SingleOrDefaultAsync(x => x.Id == businessId);
+            if (business is null)
+            {
+                throw new KeyNotFoundException("Invalid Business Id");
+            }
+
+            return business.Products.ToList();
+
+        }
     }
 }

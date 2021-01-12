@@ -24,10 +24,23 @@ namespace InventorySystem.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("{businessId}/create")]
-        public async Task<IActionResult> Index(Guid businessId, ProductRequest request)
+        public async Task<IActionResult> Add(Guid businessId, ProductRequest request)
         {
             var res = await ProductService.Add(businessId, request);
             return Ok(res);
+        }
+
+        /// <summary>
+        /// Get products
+        /// </summary>
+        /// <param name="businessId"></param>
+        /// <returns></returns>
+
+        [HttpGet("{businessId}/products")]
+        public async Task<IActionResult> GetProducts([FromRoute] Guid businessId)
+        {
+            var response = await ProductService.GetProducts(businessId);
+            return Ok(response);
         }
     }
 }
