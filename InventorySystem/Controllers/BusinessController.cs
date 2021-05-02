@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Domain.DTO.Request;
 using Domain.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,6 +27,8 @@ namespace InventorySystem.Controllers
             var res = await BusinessService.Add( request);
             return Ok(res);
         }
+
+        [Authorize]
         /// <summary>
         /// Get users
         /// </summary>
@@ -40,6 +43,8 @@ namespace InventorySystem.Controllers
             return Ok(res);
         }
 
+
+        [Authorize]
         /// <summary>
         /// Get business by name
         /// </summary>

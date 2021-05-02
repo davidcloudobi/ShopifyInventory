@@ -64,6 +64,8 @@ namespace InventorySystem.Helper
 
             //IMapper mapper = mapperConfig.CreateMapper();
             //services.AddSingleton(mapper);
+
+
         }
         public static void AppSettings(this IServiceCollection services, IConfiguration configuration)
         {
@@ -83,6 +85,8 @@ namespace InventorySystem.Helper
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ISellService, SellService>();
             services.AddScoped<IAuthLogin, AuthLoginService>();
+            services.AddScoped<ISellService, SellService>();
+            services.AddScoped<IInventoryProductService, InventoryProductService>();
         }
 
 
